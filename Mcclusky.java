@@ -230,6 +230,9 @@ public class Mcclusky{
       for(String x : minTermsList) {
         String bits = FixTableInteger.get(x);
         for (String y : minTermsList){
+            if (x.equals(y) || minTermsList.indexOf(y) <= minTermsList.indexOf(x)) {
+                continue;
+            }
             String bits1 = FixTableInteger.get(y);
             int difference = 0;
             StringBuilder temp = new StringBuilder("");
