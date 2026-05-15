@@ -12,5 +12,6 @@ public class main {
         System.out.println("Expression: " + m.SettingExpression());
         System.out.println("List Of Number's: " + m.numberOfOnes());
         System.out.println("\nThe Different Bits Are\n: " + m.LevelOne());
+        System.out.println("\nLevel Two Value Are:\n" + m.LevelTwo());
     }
 }

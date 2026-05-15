@@ -5,6 +5,10 @@ public class Mcclusky{
 
     Scanner sc = new Scanner(System.in);
 
+    ArrayList<String> LevelOneList = new ArrayList<>();
+
+    ArrayList<String> LevelTwoList = new ArrayList<>();
+
     ArrayList<String> minTermsList = new ArrayList<>();
 
     String ST = "";
@@ -202,14 +206,12 @@ public class Mcclusky{
     return NoOfOnes.substring(0, NoOfOnes.length() - 3)+("\n\n") + (ST.equals("SOP") ? "\nNo. Of Ones is 1: " + onesList1 +"\n" + "\nNo. Of Ones is 2: " + onesList2 +"\n" + "\nNo. Of Ones is 3: " + onesList3 +"\n" + "\nNo. Of Ones is 4: " + onesList4 : "\nNo. Of Zeros is 1: " + zerosList1 +"\n" + "\nNo. Of Zeros is 2: " + zerosList2 +"\n" + "\nNo. Of Zeros is 3: " + zerosList3 +"\n" + "\nNo. Of Zeros is 4: " + zerosList4 + ("\n"));
     }
 
-    //--Task 6: Level 1
+    //--Task 6: Level One
 
     String LevelOne(){
         StringBuilder CombinedMinTerm = new StringBuilder("");
 
         Map<String, String> FixTableInteger = new HashMap<>();
-
-        
 
     FixTableInteger.put("m0","0000");
     FixTableInteger.put("m1","0001");
@@ -246,11 +248,48 @@ public class Mcclusky{
                 }
             }
             if(difference == 1){
+                String combineds = temp.toString();
                 CombinedMinTerm.append("\n(").append(x).append(" , ").append(y).append(")").append("->").append(temp.toString()).append("\n");
+                LevelOneList.add(combineds);
             }
-       }
+                
+        }
       }
-        return CombinedMinTerm.toString();
+        return CombinedMinTerm.toString()+"\nLevel One Values Are : "+LevelOneList;
     }
-  
+    
+    //-- Task 7: Level Two
+
+    String LevelTwo(){
+        StringBuilder CombinedLevelTwo = new StringBuilder("");
+        LevelTwoList.clear();
+
+        for(int i = 0;i < LevelOneList.size();i++){
+            for(int j = i+1;j < LevelOneList.size();j++){
+                String x = LevelOneList.get(i);
+                String y = LevelOneList.get(j);
+               // if(x.equals(y) || LevelOneList.indexOf(y) <= LevelOneList.indexOf(x)){
+                 //   continue;
+                //}
+                StringBuilder temp = new StringBuilder("");
+                int difference = 0;
+                for(int k = 0;k < x.length();k++){
+                    if(x.charAt(k) == y.charAt(k)){
+                        temp.append(x.charAt(k));
+                    }else{
+                        difference++;
+                        temp.append("x");
+                    }
+                }
+                if(difference == 1){
+                    String Combined = temp.toString();
+                    CombinedLevelTwo.append("(").append(x).append(",").append(y).append(")->").append(Combined).append("\n");
+                    LevelTwoList.add(Combined);
+                }
+            }
+        }
+        
+        return CombinedLevelTwo.toString() + "\nLevelTwo Values Are:" +LevelTwoList;
+    }
 }
+
